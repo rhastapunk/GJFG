@@ -11,7 +11,7 @@ public class ControladorPersonaje : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		speed = 0.015f;
+		speed = 0.1f;
 		isGrounded = true;
 		runRight = true;
 		jumpForce = 1f;

@@ -4,6 +4,9 @@ using System.Collections;
 public class ControlGeneral : MonoBehaviour {
 
 	public bool gravity;
+	public GameObject player;
+	public GameObject meta;
+	public Meta scrpt;
 
 
 	//Funcion para que la gravedad sea hacia arriba
@@ -25,10 +28,27 @@ public class ControlGeneral : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		print (Mathf.Abs(transform.position.x - player.transform.position.x));
+
+		//Seguimiento del personaje por parte de la camara
+		//Bordes de la camara
+		if (player.transform.position.x >= -7 && player.transform.position.x <= 7) {
+			if(Mathf.Abs(transform.position.x - player.transform.position.x)>=2){
+				if(player.transform.position.x-transform.position.x<0){
+					this.transform.position=new Vector3(player.transform.position.x+2,0f,-10f);
+				}
+				else{
+					this.transform.position=new Vector3(player.transform.position.x-2,0f,-10f);
+				}
+			}
+		}
 
 		//Al pulsar la tecla espacio cambia la gravedad de sentido
 		if(Input.GetKeyDown(KeyCode.Space)){
 			CambioGravedad();
+		}
+		if(Input.GetKeyDown(KeyCode.O)){
+			scrpt.Cambiar();
 		}
 	}
 }
