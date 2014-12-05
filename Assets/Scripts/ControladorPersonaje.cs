@@ -14,15 +14,10 @@ public class ControladorPersonaje : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		speed = 0.1f;
-<<<<<<< HEAD
-		isGrounded = true;
-=======
 		isGrounded = false;
->>>>>>> origin/master
 		runRight = true;
 		jumpForce = 200f;
 	}
-	
 	void FixedUpdate() {
 		
 	}
@@ -48,8 +43,8 @@ public class ControladorPersonaje : MonoBehaviour {
 			GirarPersonaje ();
 		}
 		//salto del personaje.
-		isGrounded = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y) ,new Vector2(transform.position.x, transform.position.y)-Vector2.up/5, 1<<8);
-		Debug.DrawLine (new Vector2(transform.position.x, transform.position.y), new Vector2(transform.position.x, transform.position.y) - Vector2.up/5, Color.red);
+		isGrounded = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y) ,new Vector2(transform.position.x, transform.position.y)-Vector2.up, 1<<8);
+		Debug.DrawLine (new Vector2(transform.position.x, transform.position.y), new Vector2(transform.position.x, transform.position.y) - Vector2.up, Color.green);
 		if(Input.GetKeyDown(KeyCode.UpArrow)&& isGrounded){
 
 			rigidbody2D.AddForce(Vector2.up*jumpForce);
