@@ -6,34 +6,34 @@ public class ControladorPersonaje : MonoBehaviour {
 	
 	private bool isGrounded= true;
 	private bool runRight = true;
-	public float speed = 10f;
-	public float jumpForce = 100f;
+	public float speed;
+	public float jumpForce;
 
 	// Use this for initialization
 	void Start () {
-		
+		speed = 0.015f;
+		isGrounded = true;
+		runRight = true;
+		jumpForce = 1f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		float movimiento = Input.GetAxis ("Horizontal");
-		
-		
-		if (runRight) {
-			rigidbody2D.velocity = new Vector2 (movimiento * speed, rigidbody2D.velocity.y);
-		} else if (!runRight) {
-			rigidbody2D.velocity = new Vector2 (movimiento * speed, rigidbody2D.velocity.y);		
+		if(	Input.GetKey(KeyCode.RightArrow)){
+			transform.position += new Vector3(speed,0f,0f);
+			runRight = true;
 		}
-		if (movimiento*speed > 0 && !runRight) {
+		if(	Input.GetKey(KeyCode.LeftArrow)){
+			runRight = false;
+			transform.position -= new Vector3(speed,0f,0f);	
+		}
+		if (!runRight) {
 			GirarPersonaje ();
-		} else if (movimiento*speed < 0 && runRight) {
+		}else if (runRight) {
 			GirarPersonaje ();
 		}
 
-		
-		
-		
-		
 	}
 	
 
