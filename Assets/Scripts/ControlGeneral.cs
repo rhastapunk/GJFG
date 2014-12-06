@@ -5,9 +5,6 @@ public class ControlGeneral : MonoBehaviour {
 
 	public bool gravity;
 	public GameObject player;
-	public GameObject meta;
-	public Meta scrpt;
-
 
 	//Funcion para que la gravedad sea hacia arriba
 	void CambioGravedad(){
@@ -46,9 +43,6 @@ public class ControlGeneral : MonoBehaviour {
 		//Al pulsar la tecla espacio cambia la gravedad de sentido
 		if(Input.GetKeyDown(KeyCode.Space)){
 			CambioGravedad();
-		}
-		if(Input.GetKeyDown(KeyCode.O)){
-			scrpt.Cambiar();
 		}
 	}
 }
