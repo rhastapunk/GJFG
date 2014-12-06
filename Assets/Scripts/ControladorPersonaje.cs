@@ -17,7 +17,8 @@ public class ControladorPersonaje : MonoBehaviour {
 	private bool gravity;
 	private bool canJump;
 	public float s;
-	public bool girando;
+	public bool girando; 
+
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.name == "PasarNivel") {
 		}
@@ -51,9 +52,7 @@ public class ControladorPersonaje : MonoBehaviour {
 		print (Time.deltaTime);
 
 		//intentando controlar gravedad 0
-		if(gravity){
-			//rotate.x *=-1;
-		}
+
 		if (Input.GetKeyDown (KeyCode.G)) {
 						girando = true;
 		}
