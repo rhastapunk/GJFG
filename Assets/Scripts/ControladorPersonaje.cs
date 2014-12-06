@@ -10,7 +10,12 @@ public class ControladorPersonaje : MonoBehaviour {
 	public float jumpForce;
 	
 	
-	
+	void OnTriggerEnter2D(Collider2D c){
+		if (c.gameObject.name == "PasarNivel") {
+			Application.LoadLevel(Application.loadedLevel);
+		}
+
+	}
 	// Use this for initialization
 	void Start () {
 		speed = 0.1f;
@@ -37,11 +42,7 @@ public class ControladorPersonaje : MonoBehaviour {
 			transform.position -= new Vector3 (speed, 0f, 0f);	
 		}
 		//control de giro del personaje
-		if (!runRight) {
-			GirarPersonaje ();
-		} else if (runRight) {
-			GirarPersonaje ();
-		}
+
 		//salto del personaje.
 		isGrounded = Physics2D.Linecast(new Vector2(transform.position.x, transform.position.y) ,new Vector2(transform.position.x, transform.position.y)-Vector2.up, 1<<8);
 		Debug.DrawLine (new Vector2(transform.position.x, transform.position.y), new Vector2(transform.position.x, transform.position.y) - Vector2.up, Color.green);

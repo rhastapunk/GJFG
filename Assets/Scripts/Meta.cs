@@ -14,14 +14,23 @@ public class Meta : MonoBehaviour {
 		if (abierto) {
 			SR.sprite = red;
 			abierto = false;
+			this.collider2D.enabled=true;
 		} else {
 			SR.sprite = green;
 			abierto=true;
+			this.collider2D.enabled=false;
 		}
 	}
 	
 	void Start () {
-		abierto = false;
+		if (abierto) {
+			SR.sprite = green;
+			this.collider2D.enabled=false;
+		} else {
+			SR.sprite = red;
+			this.collider2D.enabled=true;
+		}
+
 	}
 
 	void Update () {
