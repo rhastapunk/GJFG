@@ -9,7 +9,6 @@ public class ControlGeneral : MonoBehaviour {
 	//Funcion para que la gravedad sea hacia arriba
 	void CambioGravedad(){
 		if (gravity) {
-			print ("CAMBIO GRAVEDAD");
 			Physics2D.gravity = new Vector2 (0f, 9.81f);
 			gravity=false;
 		} else {
@@ -25,7 +24,7 @@ public class ControlGeneral : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		print (Mathf.Abs(transform.position.x - player.transform.position.x));
+
 
 		//Seguimiento del personaje por parte de la camara
 		//Bordes de la camara
@@ -41,7 +40,7 @@ public class ControlGeneral : MonoBehaviour {
 		}
 
 		//Al pulsar la tecla espacio cambia la gravedad de sentido
-		if(Input.GetKeyDown(KeyCode.Space)){
+		if(Input.GetKeyDown(KeyCode.G)){
 			CambioGravedad();
 		}
 	}
