@@ -14,7 +14,7 @@ public class MovimientoFondo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 			
-		if(Input.GetKey
+		//if(Input.GetKey
 			if (this.gameObject.name == "V6") {
 				this.transform.position = new Vector3 (this.transform.position.x+(Camera.main.transform.position.x - camX) * -0.5f, this.transform.position.y, transform.position.z);	
 				
@@ -22,5 +22,6 @@ public class MovimientoFondo : MonoBehaviour {
 			if (this.gameObject.name == "V5") {
 				this.transform.position = new Vector3 (this.transform.position.x+(Camera.main.transform.position.x - camX) * -0.2f, this.transform.position.y, transform.position.z);	
 			}
-		}
+		//}
+}
 }
