@@ -1,6 +1,10 @@
 
 # Ignore 
 /library
-Assembly*
-CJFG*
+Assembly-CSharp.csproj
+Assembly-CSharp-vs.csproj
+GJFG.sln
+GJFG.userprefs
+GJFG-csharp.sln
+README.md
 
