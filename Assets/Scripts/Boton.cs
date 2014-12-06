@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+//AsfASDF
 public class Boton : MonoBehaviour {
 
 	public bool p;
