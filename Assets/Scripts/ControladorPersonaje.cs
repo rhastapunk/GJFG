@@ -70,6 +70,9 @@ public class ControladorPersonaje : MonoBehaviour {
 				to = Quaternion.Euler (0, 0, 180);
 				s += Time.deltaTime * 1.5f;
 				transform.rotation = Quaternion.Lerp (from, to, s);
+				if(s>1){
+				transform.rotation = Quaternion.Euler (0,180,180);
+				}
 		} 
 		/*------------------------------------*/
 		//salto del personaje.
@@ -99,12 +102,18 @@ public class ControladorPersonaje : MonoBehaviour {
 		             detectorD.transform.position.y) - Vector2.up*0.15f,Color.blue);
 		//salto
 		if(Input.GetKeyDown(KeyCode.UpArrow)&& isGrounded && canJump){
+			if (girado){
+			canJump = false;
+			StartCoroutine("reactiveJump");
+				
+			rigidbody2D.AddForce(-Vector2.up*jumpForce);
 
+			}else{
 			canJump = false;
 			StartCoroutine("reactiveJump");
 
 			rigidbody2D.AddForce(Vector2.up*jumpForce);
-			
+			}
 		}
 	
 		//moviento derecha e izquierda del personaje
