@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public class ControladorPersonaje : MonoBehaviour {
+public class ControladorPersonaje : MonoBehaviour { 
 
 
 	public bool isGrounded;
@@ -47,19 +47,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//intentando controlar gravedad 0
-
-
-		/*if(Input.GetKeyDown (KeyCode.Space) && girando) {
-			girando = false;
-			Quaternion from;
-			Quaternion to;
-			from = Quaternion.Euler (0, 0, 0);
-			to = Quaternion.Euler (0, 0, 180);
-			s += Time.deltaTime * 1.5f;
-			transform.rotation = Quaternion.Lerp (from, to, s);
-			gravity = false;
-		}*/
+		//intentando controlar gravedad
 		if (Input.GetKeyDown (KeyCode.G)) {
 			girado = true;
 		}
@@ -77,17 +65,25 @@ public class ControladorPersonaje : MonoBehaviour {
 		/*------------------------------------*/
 		//salto del personaje.
 		if(girado){
-			isGrounded = Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
+			isGrounded = (Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
 			                                                       detectorI.transform.position.y) ,
 			                                           new Vector2(detectorI.transform.position.x, 
-			            detectorI.transform.position.y)+Vector2.up*0.15f, 1<<8);
+			            detectorI.transform.position.y)+Vector2.up*0.15f, 1<<8) ||
+				Physics2D.Linecast(new Vector2(detectorD.transform.position.x,
+			                                 detectorD.transform.position.y) ,
+			                       new Vector2(detectorD.transform.position.x, 
+			            detectorD.transform.position.y)+Vector2.up*0.15f, 1<<8));
 		}
 
 		else{
-			isGrounded = Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
-			                                                 detectorI.transform.position.y) ,
-			                                     new Vector2(detectorI.transform.position.x, 
-			            detectorI.transform.position.y)-Vector2.up*0.15f, 1<<8);
+			isGrounded = (Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
+			                                             detectorI.transform.position.y) ,
+			                                 new Vector2(detectorI.transform.position.x, 
+			            detectorI.transform.position.y)-Vector2.up*0.15f, 1<<8) ||
+			              Physics2D.Linecast(new Vector2(detectorD.transform.position.x,
+			                               detectorD.transform.position.y) ,
+			                   new Vector2(detectorD.transform.position.x, 
+			            detectorD.transform.position.y)-Vector2.up*0.15f, 1<<8));
 		}
 
 		//boolean isGround sera true cuando el linecast toque un collaider.
