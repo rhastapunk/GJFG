@@ -43,5 +43,8 @@ public class ControlGeneral : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.G)){
 			CambioGravedad();
 		}
+	/*	if (Input.GetKeyDown (KeyCode.G)) {
+				Physics2D.gravity = new Vector2 (0f, -9.81f);
+		}*/
 	}
 }
