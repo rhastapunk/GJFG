@@ -1,10 +1,22 @@
+<<<<<<< HEAD
 # Ignore
 /Library
+=======
+
+# Ignore 
+/library
+>>>>>>> feature/start_real_work
 Assembly-CSharp.csproj
 Assembly-CSharp-vs.csproj
 GJFG.sln
 GJFG.userprefs
+<<<<<<< HEAD
 GJFG-csharp-sln
 README.md
 
 
+=======
+GJFG-csharp.sln
+README.md
+
+>>>>>>> feature/start_real_work

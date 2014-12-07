@@ -12,10 +12,12 @@ public class ViajesTemporales : MonoBehaviour {
 	public int contador;
 	public int auxI;
 	public MovimientoCopia scrptCopia;
+	public ControladorPersonaje scrptPJ;
 
 	void Start () {
 		contador = 0;
 		posiciones = new List<float>();
+		scrptPJ = player.GetComponent ("ControladorPersonaje") as ControladorPersonaje;
 	}
 
 	void Update () {
@@ -34,7 +36,9 @@ public class ViajesTemporales : MonoBehaviour {
 			contador=0;
 			player.transform.position=new Vector3(posiciones[0], posiciones[1], 0);
 			posiciones= new List<float>();
-			print ("INSTANCIO");
+			Physics2D.gravity = new Vector2 (0f, -9.81f);
+			scrptPJ.girado = false;
+			player.transform.rotation = Quaternion.Euler (0, 0, 0);
 		}
 	}
 } 
