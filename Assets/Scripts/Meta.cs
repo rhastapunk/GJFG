@@ -18,13 +18,11 @@ public class Meta : MonoBehaviour {
 	}
 
 	void Update () {
-		print (abierto);
 		abierto = true;
 		//Cambia la meta de abierto a cerrado y viceversa.
 		//Si la meta esta abierta el personaje podra pasar de nivel.
 		foreach (GameObject g in botones) {
 			scrptBoton = g.GetComponent("MecanicaBoton") as MecanicaBoton; 
-			print(scrptBoton.pulsado);
 			if(!scrptBoton.pulsado){
 				abierto=false;
 			}

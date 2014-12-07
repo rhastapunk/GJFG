@@ -2,22 +2,21 @@
 using System.Collections;
 
 
-public class ControladorPersonaje : MonoBehaviour {
+public class ControladorPersonaje : MonoBehaviour { 
 
 
 	public bool isGrounded;
-	private bool runRight;
 	private bool isIdle;
 	public float speed;
 	public float jumpForce;
 	public GameObject detectorI;
 	public GameObject detectorD;
 	private Animator animator;
-	private int aux;
-	private Vector3 rotate;
+	private Quaternion rotate;
 	private bool canJump;
 	public float s;
 	public bool girado; 
+
 
 
 	void OnTriggerEnter2D(Collider2D c){
@@ -34,11 +33,10 @@ public class ControladorPersonaje : MonoBehaviour {
 	void Start () {
 		s = 0f;
 		isGrounded = true;
-		runRight = true;
 		jumpForce = 500f;
 		animator = GetComponent<Animator> ();
 		isIdle = true;
-		rotate = transform.localScale;
+		rotate = new Quaternion();
 		canJump = true;
 		speed = 0.1f;
 
@@ -47,19 +45,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//intentando controlar gravedad 0
-
-
-		/*if(Input.GetKeyDown (KeyCode.Space) && girando) {
-			girando = false;
-			Quaternion from;
-			Quaternion to;
-			from = Quaternion.Euler (0, 0, 0);
-			to = Quaternion.Euler (0, 0, 180);
-			s += Time.deltaTime * 1.5f;
-			transform.rotation = Quaternion.Lerp (from, to, s);
-			gravity = false;
-		}*/
+		//intentando controlar gravedad
 		if (Input.GetKeyDown (KeyCode.G)) {
 			girado = true;
 		}
@@ -77,17 +63,25 @@ public class ControladorPersonaje : MonoBehaviour {
 		/*------------------------------------*/
 		//salto del personaje.
 		if(girado){
-			isGrounded = Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
+			isGrounded = (Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
 			                                                       detectorI.transform.position.y) ,
 			                                           new Vector2(detectorI.transform.position.x, 
-			            detectorI.transform.position.y)+Vector2.up*0.15f, 1<<8);
+			            detectorI.transform.position.y)+Vector2.up*0.15f, 1<<8) ||
+				Physics2D.Linecast(new Vector2(detectorD.transform.position.x,
+			                                 detectorD.transform.position.y) ,
+			                       new Vector2(detectorD.transform.position.x, 
+			            detectorD.transform.position.y)+Vector2.up*0.15f, 1<<8));
 		}
 
 		else{
-			isGrounded = Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
-			                                                 detectorI.transform.position.y) ,
-			                                     new Vector2(detectorI.transform.position.x, 
-			            detectorI.transform.position.y)-Vector2.up*0.15f, 1<<8);
+			isGrounded = (Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
+			                                             detectorI.transform.position.y) ,
+			                                 new Vector2(detectorI.transform.position.x, 
+			            detectorI.transform.position.y)-Vector2.up*0.15f, 1<<8) ||
+			              Physics2D.Linecast(new Vector2(detectorD.transform.position.x,
+			                               detectorD.transform.position.y) ,
+			                   new Vector2(detectorD.transform.position.x, 
+			            detectorD.transform.position.y)-Vector2.up*0.15f, 1<<8));
 		}
 
 		//boolean isGround sera true cuando el linecast toque un collaider.
@@ -121,27 +115,34 @@ public class ControladorPersonaje : MonoBehaviour {
 		isIdle = true;
 				if (Input.GetKey (KeyCode.RightArrow)) { //si presiona tecla izq
 						transform.position += new Vector3 (speed, 0f, 0f);
-						runRight = true;
-						isIdle = false;
-						if(transform.localScale.x == -1){
-							rotate.x *=-1;
-						}
-	 
-				} else if (Input.GetKey (KeyCode.LeftArrow)) {//si presiona tecla der
-						runRight = false;
-						transform.position -= new Vector3 (speed, 0f, 0f);
 						isIdle = false;
 
-						if(transform.localScale.x == 1){
-							rotate.x *=-1;
-						}
-					
+						
+							if(girado){
+								rotate = Quaternion.Euler(0f,180f,180f);
+							}else{
+								rotate = Quaternion.Euler(0f,0f,0f);
+							}
+							transform.rotation = rotate;
+						
+	 
+				} else if (Input.GetKey (KeyCode.LeftArrow)) {//si presiona tecla der
+						transform.position -= new Vector3 (speed, 0f, 0f);
+						isIdle = false;
+							
+
+							if(girado){
+								rotate = Quaternion.Euler(0f,0f,180f);
+							}else{
+								rotate = Quaternion.Euler(0f,180f,0f);
+							}
+							transform.rotation = rotate;
 				}
-		transform.localScale = rotate;
+					 
+				
+
 		//animator
 		animator.SetBool ("isGround", isGrounded);
-		aux = (int) rigidbody2D.velocity.x;
-		animator.SetInteger ("velocidadX", aux);
 		animator.SetBool ("isIdle", isIdle);
 	}
 
