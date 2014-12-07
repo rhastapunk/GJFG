@@ -28,7 +28,6 @@ public class MecanicaBoton : MonoBehaviour {
 			bc.center =new Vector2(-0.16f,-0.25f);
 			bc.size = new Vector2(1.2f,0.71f);
 		}
-		print (pulsado);
 		if (d1.p || d2.p || d3.p) {
 			pulsado = true;
 		} else {

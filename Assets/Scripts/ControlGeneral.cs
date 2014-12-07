@@ -4,16 +4,13 @@ using System.Collections;
 public class ControlGeneral : MonoBehaviour {
 
 	public bool gravity;
-	public GameObject player;
+	public GameObject player; 
 
 	//Funcion para que la gravedad sea hacia arriba
 	void CambioGravedad(){
 		if (gravity) {
 			Physics2D.gravity = new Vector2 (0f, 9.81f);
 			gravity=false;
-		} else {
-			Physics2D.gravity = new Vector2(0f,-9.81f);
-			gravity=true;
 		}
 	}
 
@@ -24,7 +21,9 @@ public class ControlGeneral : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			gravity = true;
+		}
 
 		//Seguimiento del personaje por parte de la camara
 		//Bordes de la camara
