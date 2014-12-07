@@ -18,7 +18,7 @@ public class ControlGeneral : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () { 
 		gravity = true;
 	}
 	
