@@ -4,6 +4,7 @@ using System.Collections;
 
 public class ControladorPersonaje : MonoBehaviour {
 
+
 	public bool isGrounded;
 	private bool runRight;
 	private bool isIdle;
@@ -14,13 +15,14 @@ public class ControladorPersonaje : MonoBehaviour {
 	private Animator animator;
 	private int aux;
 	private Vector3 rotate;
-	private bool gravity;
 	private bool canJump;
 	public float s;
-	public bool girando; 
+	public bool girado; 
+
 
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.name == "PasarNivel") {
+			Application.LoadLevel(Application.loadedLevel);
 		}
 
 	}
@@ -30,57 +32,77 @@ public class ControladorPersonaje : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		speed = 0.1f;
 		s = 0f;
 		isGrounded = true;
 		runRight = true;
-		jumpForce = 350f;
+		jumpForce = 500f;
 		animator = GetComponent<Animator> ();
 		isIdle = true;
 		rotate = transform.localScale;
-		gravity = false;
 		canJump = true;
-		girando = false;
-	//	f.rotation = new Vector3 (0f, 0f, 0f);
-	//	t.rotation = new Vector3 (0f, 0f, 180f);
+		speed = 0.1f;
 
 	}
 
 	// Update is called once per frame
 	void Update () {
 
-		print (Time.deltaTime);
-
 		//intentando controlar gravedad 0
 
-		if (Input.GetKeyDown (KeyCode.G)) {
-						girando = true;
-		}
-		if (girando)
-		{
+
+		/*if(Input.GetKeyDown (KeyCode.Space) && girando) {
+			girando = false;
 			Quaternion from;
 			Quaternion to;
 			from = Quaternion.Euler (0, 0, 0);
 			to = Quaternion.Euler (0, 0, 180);
-			s += Time.deltaTime*1.5f;
-			transform.rotation = Quaternion.Lerp(from,to,s);
-			gravity = true;
+			s += Time.deltaTime * 1.5f;
+			transform.rotation = Quaternion.Lerp (from, to, s);
+			gravity = false;
+		}*/
+		if (Input.GetKeyDown (KeyCode.G)) {
+			girado = true;
 		}
+		if (girado) {
+				Quaternion from;
+				Quaternion to;
+				from = Quaternion.Euler (0, 0, 0);
+				to = Quaternion.Euler (0, 0, 180);
+				s += Time.deltaTime * 1.5f;
+				transform.rotation = Quaternion.Lerp (from, to, s);
+		} 
 		/*------------------------------------*/
 		//salto del personaje.
-		isGrounded = Physics2D.Linecast(new Vector2(detectorI.transform.position.x, detectorI.transform.position.y) ,
-		                                new Vector2(detectorI.transform.position.x, detectorI.transform.position.y)-Vector2.up*0.15f, 1<<8);
+		if(girado){
+			isGrounded = Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
+			                                                       detectorI.transform.position.y) ,
+			                                           new Vector2(detectorI.transform.position.x, 
+			            detectorI.transform.position.y)+Vector2.up*0.15f, 1<<8);
+		}
+
+		else{
+			isGrounded = Physics2D.Linecast(new Vector2(detectorI.transform.position.x,
+			                                                 detectorI.transform.position.y) ,
+			                                     new Vector2(detectorI.transform.position.x, 
+			            detectorI.transform.position.y)-Vector2.up*0.15f, 1<<8);
+		}
+
 		//boolean isGround sera true cuando el linecast toque un collaider.
-		Debug.DrawLine (new Vector2(detectorI.transform.position.x, detectorI.transform.position.y), 
-		                new Vector2(detectorI.transform.position.x, detectorI.transform.position.y) - Vector2.up*0.15f, Color.green);
+		Debug.DrawLine (new Vector2(detectorI.transform.position.x,
+		                            detectorI.transform.position.y), 
+		                new Vector2(detectorI.transform.position.x,
+		            detectorI.transform.position.y) - Vector2.up*0.15f, Color.green);
 		
-		Debug.DrawLine (new Vector2 (detectorD.transform.position.x, detectorD.transform.position.y), 
-		                new Vector2 (detectorD.transform.position.x, detectorD.transform.position.y) - Vector2.up*0.15f,Color.blue);
+		Debug.DrawLine (new Vector2 (detectorD.transform.position.x, 
+		                             detectorD.transform.position.y), 
+		                new Vector2 (detectorD.transform.position.x,
+		             detectorD.transform.position.y) - Vector2.up*0.15f,Color.blue);
 		//salto
 		if(Input.GetKeyDown(KeyCode.UpArrow)&& isGrounded && canJump){
 
 			canJump = false;
 			StartCoroutine("reactiveJump");
+
 			rigidbody2D.AddForce(Vector2.up*jumpForce);
 			
 		}
@@ -112,15 +134,11 @@ public class ControladorPersonaje : MonoBehaviour {
 		aux = (int) rigidbody2D.velocity.x;
 		animator.SetInteger ("velocidadX", aux);
 		animator.SetBool ("isIdle", isIdle);
-
-
-
-
-
-
 	}
+
 	IEnumerator reactiveJump(){
 		yield return(new WaitForSeconds (0.2f));
 		canJump = true;
 	}
+
 }
