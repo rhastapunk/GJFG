@@ -16,7 +16,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	private bool canJump;
 	public float s;
 	public bool girado; 
-
+	public bool canUseGravity;
 
 
 	void OnTriggerEnter2D(Collider2D c){
@@ -31,7 +31,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		s = 0f;
+
 		isGrounded = true;
 		jumpForce = 500f;
 		animator = GetComponent<Animator> ();
@@ -46,7 +46,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	void Update () {
 
 		//intentando controlar gravedad
-		if (Input.GetKeyDown (KeyCode.G)) {
+		if ((Input.GetKeyDown (KeyCode.G)) && canUseGravity) {
 			girado = true;
 		}
 		if (girado) {
