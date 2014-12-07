@@ -25,6 +25,15 @@ public class MovimientoMalo : MonoBehaviour {
 			this.transform.position=new Vector3(iniX, iniY,0f);
 			right=initRight;
 		}
+
+	}
+	void OnCollisionEnter2D(Collision2D col){
+
+		if (col.gameObject.tag == "Player") {
+			Application.LoadLevel(Application.loadedLevel);
+		}
+
+
 	}
 	public void Move(){
 		if (right) {

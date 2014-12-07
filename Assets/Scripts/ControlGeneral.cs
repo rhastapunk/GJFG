@@ -11,9 +11,6 @@ public class ControlGeneral : MonoBehaviour {
 		if (gravity) {
 			Physics2D.gravity = new Vector2 (0f, 9.81f);
 			gravity=false;
-		} else {
-			Physics2D.gravity = new Vector2(0f,-9.81f);
-			gravity=true;
 		}
 	}
 
