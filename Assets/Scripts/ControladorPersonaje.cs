@@ -17,16 +17,27 @@ public class ControladorPersonaje : MonoBehaviour {
 	public float s;
 	public bool girado; 
 	public bool canUseGravity;
+	public AudioSource pasarNivel;
 
+	IEnumerator cargarSiguiente(){
+
+		yield return new WaitForSeconds (1);
+		PlayerPrefs.SetInt("dialog",1);
+		string auxS = Application.loadedLevelName.Substring(6);
+		float auxF= (float)double.Parse(auxS);
+		auxF+=1f;
+		Application.LoadLevel("Escena"+auxF);
+	}
 
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.name == "PasarNivel") {
-			string auxS = Application.loadedLevelName.Substring(6);
-			float auxF= (float)double.Parse(auxS);
-			auxF+=1f;
+
+
 			Physics2D.gravity = new Vector2 (0f, -9.81f);
-			Application.LoadLevel("Escena"+auxF);
-			PlayerPrefs.SetInt("dialog",1);
+			pasarNivel.Play();
+			StartCoroutine("cargarSiguiente");
+
+
 		}
 
 	}
@@ -49,7 +60,6 @@ public class ControladorPersonaje : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		print ("Escena"+Application.loadedLevelName.Substring(6));
 
 		//intentando controlar gravedad
 		if ((Input.GetKeyDown (KeyCode.G)) && canUseGravity) {

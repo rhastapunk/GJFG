@@ -7,10 +7,12 @@ public class Trampolin : MonoBehaviour {
 	public SpriteRenderer sr;
 	public Sprite cargado;
 	public Sprite liberado;
+	public AudioSource trampolin;
 	// Use this for initialization
 	void Start () {
 		sr = this.GetComponent ("SpriteRenderer") as SpriteRenderer;
 	}
+
 
 	IEnumerator cargar(){
 		yield return new WaitForSeconds (0.2f);
@@ -19,6 +21,7 @@ public class Trampolin : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag == "Player") {
+			trampolin.Play ();
 			if(izquierda){
 				col.gameObject.rigidbody2D.velocity=Vector2.zero;
 				col.gameObject.rigidbody2D.AddForce(new Vector2(fuerza.x*-1, fuerza.y), ForceMode2D.Impulse);

@@ -5,6 +5,7 @@ public class Portal : MonoBehaviour {
 
 	public GameObject other;
 	public Portal scrptOther;
+	public AudioSource portal;
 	// Use this for initialization
 	void Start () {
 		scrptOther =  other.GetComponent("Portal") as Portal;
@@ -15,6 +16,7 @@ public class Portal : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag == "Player") {
+			portal.Play ();
 			other.gameObject.collider2D.enabled=false;
 			col.gameObject.transform.position=other.transform.position;
 			scrptOther.reactivar();

@@ -9,6 +9,7 @@ public class MovimientoMalo : MonoBehaviour {
 	public GameObject player;
 	public ControladorPersonaje scrptPJ;
 	public ViajesTemporales scrptVT;
+	public AudioSource hit;
 
 	// Use this for initialization
 	void Start () {
@@ -36,14 +37,20 @@ public class MovimientoMalo : MonoBehaviour {
 		}
 
 	}
+
+	IEnumerator reiniciarNivel(){
+		yield return new WaitForSeconds (0.3f);
+		Application.LoadLevel(Application.loadedLevel);
+
+	}
+	
 	void OnCollisionEnter2D(Collision2D col){
 
 		if (col.gameObject.tag == "Player") {
+			hit.Play ();
 			Physics2D.gravity = new Vector2 (0f, -9.81f);
-			Application.LoadLevel(Application.loadedLevel);
+			StartCoroutine("reiniciarNivel");
 		}
-
-
 	}
 	public void Move(){
 		if (right) {
