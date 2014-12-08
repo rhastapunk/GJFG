@@ -99,6 +99,8 @@ public class Dialogo : MonoBehaviour {
 		}
 
 		if (contador > 0) {
+
+
 			if (hablando == 1) {
 				print("ENTRO");
 						if (Input.GetKeyDown (KeyCode.Space)) {
@@ -109,6 +111,9 @@ public class Dialogo : MonoBehaviour {
 						}
 				}
 			else{
+				if(Application.loadedLevelName=="Escena12"){
+					Application.LoadLevel("Creditos");
+				}
 				dI.SetActive (false);
 				dD.SetActive (false);
 				dDBoss.SetActive (false);
