@@ -21,7 +21,10 @@ public class ControladorPersonaje : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.name == "PasarNivel") {
-			Application.LoadLevel(Application.loadedLevel);
+			string auxS = Application.loadedLevelName.Substring(6);
+			float auxF= (float)double.Parse(auxS);
+			auxF+=1f;
+			Application.LoadLevel("Escena"+auxF);
 		}
 
 	}
@@ -44,6 +47,7 @@ public class ControladorPersonaje : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		print ("Escena"+Application.loadedLevelName.Substring(6));
 
 		//intentando controlar gravedad
 		if ((Input.GetKeyDown (KeyCode.G)) && canUseGravity) {
