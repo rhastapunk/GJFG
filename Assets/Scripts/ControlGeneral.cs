@@ -8,6 +8,7 @@ public class ControlGeneral : MonoBehaviour {
 	public bool canUseGravity;
 	public int maxX, minX;
 
+
 	//Funcion para que la gravedad sea hacia arriba
 	void CambioGravedad(){
 		if (gravity) {
@@ -18,6 +19,7 @@ public class ControlGeneral : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () { 
+
 		gravity = true;
 		if (maxX == 0) {
 			maxX = 7;
@@ -29,6 +31,7 @@ public class ControlGeneral : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			gravity = true;
+
 		}
 
 		//Seguimiento del personaje por parte de la camara
