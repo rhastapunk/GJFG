@@ -21,7 +21,7 @@ public class ControlGeneral : MonoBehaviour {
 		gravity = true;
 		if (maxX == 0) {
 			maxX = 7;
-			minX = -7;
+			minX = -15;
 		}
 	}
 	
