@@ -9,6 +9,7 @@ public class MovimientoMalo : MonoBehaviour {
 	public GameObject player;
 	public ControladorPersonaje scrptPJ;
 	public ViajesTemporales scrptVT;
+
 	// Use this for initialization
 	void Start () {
 		initRight = right;
@@ -27,7 +28,7 @@ public class MovimientoMalo : MonoBehaviour {
 	void Update () {
 		Move ();
 		if(Input.GetKeyDown(KeyCode.Space)&&(scrptPJ.isGrounded)){
-			if(scrptVT.nTravels > 0){
+			if(scrptVT.nTravels >= 0){
 				this.transform.position=new Vector3(iniX, iniY,0f);
 				right=initRight;
 			}
@@ -38,6 +39,7 @@ public class MovimientoMalo : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col){
 
 		if (col.gameObject.tag == "Player") {
+			Physics2D.gravity = new Vector2 (0f, -9.81f);
 			Application.LoadLevel(Application.loadedLevel);
 		}
 
