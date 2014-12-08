@@ -6,6 +6,7 @@ public class GUIMenu : MonoBehaviour {
 	void OnMouseDown(){
 		if (this.gameObject.name == "Start") {
 			Application.LoadLevel("Escena1");
+			PlayerPrefs.SetInt("dialog",1);
 		}
 	}
 

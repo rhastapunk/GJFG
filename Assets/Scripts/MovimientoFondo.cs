@@ -13,7 +13,7 @@ public class MovimientoFondo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-				this.transform.position = new Vector3 ((Camera.main.transform.position.x - camX) * -0.5f, this.transform.position.y, transform.position.z);	
+				this.transform.position = new Vector3 ((Camera.main.transform.position.x - camX) * -0.2f, this.transform.position.y, transform.position.z);	
 
 	}
 }

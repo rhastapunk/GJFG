@@ -33,7 +33,11 @@ public class ControlGeneral : MonoBehaviour {
 			gravity = true;
 
 		}
-
+		if (Input.GetKeyDown (KeyCode.R)) {
+			Physics2D.gravity = new Vector2 (0f, -9.81f);
+			Application.LoadLevel(Application.loadedLevel);
+			
+		}
 		//Seguimiento del personaje por parte de la camara
 		//Bordes de la camara
 		if (player.transform.position.x >= minX && player.transform.position.x <= maxX) {

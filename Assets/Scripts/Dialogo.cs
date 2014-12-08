@@ -3,15 +3,17 @@ using System.Collections;
 
 public class Dialogo : MonoBehaviour {
 
-	public bool hablando;
+	public int hablando;
 	public int contador;
 	public GameObject dI;
 	public GameObject dD;
 	// Use this for initialization
 	void Start () {
-		if (hablando) {
+		hablando = PlayerPrefs.GetInt("dialog");
+		if (hablando==1) {
 			dI.SetActive(true);
 		}
+
 	}
 	void CambioDialogo(){
 		if (dI.activeSelf) {
@@ -24,17 +26,27 @@ public class Dialogo : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (contador >= 0) {
+		if (contador > 0 && hablando==1) {
 						if (Input.GetKeyDown (KeyCode.Space)) {
 								CambioDialogo ();
 								contador--;
 						}
+					if(contador ==0){
+						Application.LoadLevel(Application.loadedLevel);
+						PlayerPrefs.SetInt("dialog",0);
+						contador--;
+					}
+
+
 				}
 		else{
 			dI.SetActive (false);
 			dD.SetActive (false);
-			hablando=false;
+			hablando=0;
+			
+
 		}
+
 	
 	}
 }

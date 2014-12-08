@@ -24,7 +24,9 @@ public class ControladorPersonaje : MonoBehaviour {
 			string auxS = Application.loadedLevelName.Substring(6);
 			float auxF= (float)double.Parse(auxS);
 			auxF+=1f;
+			Physics2D.gravity = new Vector2 (0f, -9.81f);
 			Application.LoadLevel("Escena"+auxF);
+			PlayerPrefs.SetInt("dialog",1);
 		}
 
 	}
