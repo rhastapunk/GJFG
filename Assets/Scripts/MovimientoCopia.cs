@@ -38,10 +38,11 @@ public class MovimientoCopia : MonoBehaviour {
 	//	print (contador);
 		//Reseteamos el contador (para que comiencen desde 0) al pulsar la tecla spacio
 
-		if ((Input.GetKeyDown (KeyCode.Space)) && (scrptPJ.isGrounded)) {
-
-			if(scrptVT.nTravels > 0){
-				contador=0;
+		if (scrptPJ.isGrounded) {
+			if(Input.GetKeyDown (KeyCode.Space)){
+				if(scrptVT.nTravels >= 0){
+					contador=0;;
+				}
 			}
 		}
 	}

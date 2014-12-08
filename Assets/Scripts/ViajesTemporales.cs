@@ -15,6 +15,8 @@ public class ViajesTemporales : MonoBehaviour {
 	public ControladorPersonaje scrptPJ;
 	SpriteRenderer sp;
 	public int nTravels;
+	public float initX;
+
 
 
 	void Start () {
@@ -22,6 +24,7 @@ public class ViajesTemporales : MonoBehaviour {
 		posiciones = new List<float>();
 		scrptPJ = player.GetComponent ("ControladorPersonaje") as ControladorPersonaje;
 		sp = player.GetComponent ("SpriteRenderer") as SpriteRenderer;
+		initX = transform.position.x;
 	}
 
 	void Update () {
@@ -55,7 +58,11 @@ public class ViajesTemporales : MonoBehaviour {
 				scrptPJ.girado = false;
 				player.transform.rotation = Quaternion.Euler (0, 0, 0);
 				nTravels--;
+				transform.position = new Vector3(initX,transform.position.y, transform.position.z);
 
+			}
+			else{
+				nTravels--;
 			}
 		}
 	}
