@@ -24,12 +24,12 @@ de su aprendiz...
 
 Jugabilidad:
 
-Flecha izquierda, Flecha derecha (movimiento personaje a izquierda y a derecha)
-Flecha arriba (Salto)
-Espacio (Crear brecha temporal)
-Tecla G (cambiar gravedad)
-Tecla R (reiniciar el nivel)
-Escape (saltar créditos)
+Flecha izquierda, Flecha derecha (movimiento personaje a izquierda y a derecha).
+Flecha arriba (Salto).
+Espacio (Crear brecha temporal o pasar textos y créditos).
+Tecla G (cambiar gravedad).
+Tecla R (reiniciar el nivel).
+Escape (saltar créditos).
 
 Funcionalidad:
 
