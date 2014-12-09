@@ -1,3 +1,7 @@
+Jugar Online (acceso directo):
+http://hello-canvas.es/Lapsus/
+
+
 GJFG
 ====
 LAPSUS (Loops and portals synchroniced under science)
