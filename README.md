@@ -1,10 +1,12 @@
-Jugar Online (acceso directo):
-http://hello-canvas.es/Lapsus/
+
 
 
 GJFG
 ====
 LAPSUS (Loops and portals synchroniced under science)
+
+Jugar Online (acceso directo):
+http://hello-canvas.es/Lapsus/
 
 MUSIC (Kevin MacLeod)
 Punch sound (https://www.freesound.org/people/Ekokubza123/sounds/104183/) by Ekokubza123
